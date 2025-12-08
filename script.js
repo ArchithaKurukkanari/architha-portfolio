@@ -203,35 +203,6 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-// Stats counter animation
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const stats = entry.target.querySelectorAll('.stat-item h3');
-            stats.forEach(stat => {
-                const target = parseInt(stat.textContent);
-                const suffix = stat.textContent.replace(/[0-9]/g, '');
-                let current = 0;
-                const increment = target / 50;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    stat.textContent = Math.floor(current) + suffix;
-                }, 30);
-            });
-        }
-    });
-}, { threshold: 0.5 });
-
-// Observe stats section
-const statsSection = document.querySelector('.stats');
-if (statsSection) {
-    statsObserver.observe(statsSection);
-}
 
 // Add styles for back to top button
 const style = document.createElement('style');
